@@ -18,14 +18,63 @@
 
 // 9. When the player loses, increase the Losses counter and restart the game without a page refresh (just like when the user wins).
 
-var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+
 
 var wins = 0;
 var losses = 0;
-var numGuesses = 9;
+var numGuesses = 10;
 var guessChoices = [];
 
+var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+
+
+var userGuess = document.getElementById("userGuess");
+var computerGuess = document.getElementById("computerGuess");
+var numGuesses = document.getElementById("numGuesses");
+var wins = document.getElementById("wins");
+var losses = document.getElementById("losses");
+
+
 document.onkeyup = function(event) {
-   
+
+    var userGuess = event.key;
+
+    var computerGuess = computerGuesses[Math.floor(Math.random() * computerChoices.length)];
+
+    var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+    
+
+   if (options.indexOf(userGuess) > -1) {
+
+       if (userGuess === computerGuess) {
+           wins++;
+           numGuesses = 10;
+           guessChoices = [];
+       }
+
+       if (userGuess !== computerGuess) {
+           numGuesses --;
+           guessChoices.push(userGuess);
+       }
+
+       if (numGuesses === 0) {
+
+           numGuesses = 10;
+           losses ++;
+           guessChoices = [];
+
+       }     
+       
+       if(previousGuess.includes(userGuess)) {
+        return;
+      }
+
+   }
+
+   userGuess.textContent = "Your Guesses so far: " + userGuess;
+   wins.textContent = "Wins: " + wins;
+   losses.textContent = "Losses: " + losses;
+
+  
    }
 };
