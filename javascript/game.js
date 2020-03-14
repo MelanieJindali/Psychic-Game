@@ -25,29 +25,33 @@ var losses = 0;
 var numGuesses = 10;
 var guessChoices = [];
 
+
+var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+
+
 var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
 
 
-var userGuess = document.getElementById("userGuess");
-var computerGuess = document.getElementById("computerGuess");
-var numGuesses = document.getElementById("numGuesses");
-var wins = document.getElementById("wins");
-var losses = document.getElementById("losses");
+var userChoiceText = document.getElementById("userchoice-text");
+var computerChoiceText = document.getElementById("computerchoice-text");
+var numGuessesText = document.getElementById("numguess-text");
+var guessesLeftText = document.getElementById("guessesleft-text")
+var winsText = document.getElementById("wins-text");
+var lossesText = document.getElementById("losses-text");
 
 
 document.onkeyup = function(event) {
 
-    var userGuess = event.key;
+    
+var userGuess = event.key;
 
-    var computerGuess = computerGuesses[Math.floor(Math.random() * computerChoices.length)];
-
-    var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     
 
    if (options.indexOf(userGuess) > -1) {
 
        if (userGuess === computerGuess) {
-           wins++;
+           wins ++;
            numGuesses = 10;
            guessChoices = [];
        }
@@ -71,10 +75,10 @@ document.onkeyup = function(event) {
 
    }
 
-   userGuess.textContent = "Your Guesses so far: " + userGuess;
-   wins.textContent = "Wins: " + wins;
-   losses.textContent = "Losses: " + losses;
-
   
-   }
-};
+   winsText.textContent = "Wins: " + wins;
+   lossesText.textContent = "Losses: " + losses;
+   numGuessesText.textContent = "Number of guesses left: " + numGuesses;
+   userChoiceText.textContent = "Your guesses so far: " + userGuess;
+  
+}
